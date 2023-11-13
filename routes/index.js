@@ -1,8 +1,14 @@
 const express = require("express");
 const route = express.Router();
 
-route.get("/", (req,res) => {
-    res.json("Ini route dari express mongoose")
-})
+const registRoutes = require("./register.route");
+const loginRoutes = require("./login.route");
 
-module.exports = route
+route.get("/", (req, res) => {
+  res.json("Welcome to Web Service ToDo List");
+});
+
+route.use("/register", registRoutes);
+route.use("/login", loginRoutes);
+
+module.exports = route;
