@@ -1,3 +1,4 @@
+require('dotenv').config()
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
@@ -8,7 +9,7 @@ const verifyToken = (req, res, next) => {
     const token = header.split(" ")[1];
     if (!token) throw new Error("Tidak ada token");
 
-    const user = jwt.verify(token, "hjbs212jhsa21t3");
+    const user = jwt.verify(token, process.env.JWT_KEY);
 
     req.user = user;
     next();

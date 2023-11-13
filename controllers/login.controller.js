@@ -1,3 +1,4 @@
+require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const User = require("../models/user")
 
@@ -12,7 +13,7 @@ module.exports = {
       console.log(user.password, userLogin.password);
       if (user.password !== userLogin.password) throw new Error("Tidak ada user user yang cocok")
   
-      const token = jwt.sign({id: user._id, email: user.email, username: user.username}, "hjbs212jhsa21t3")
+      const token = jwt.sign({id: user._id, email: user.email, username: user.username}, process.env.JWT_KEY)
   
       res.json({
         message: "login berhasil",

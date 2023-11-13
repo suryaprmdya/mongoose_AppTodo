@@ -1,6 +1,7 @@
+require('dotenv').config()
 const mongoose = require("mongoose");
 
-const DB_URL ="mongodb+srv://suryaprmdya:Demak291003@clustersurya.vabehjv.mongodb.net/Todo_WebService";
+const DB_URL = process.env.DB_URL || "mongodb:localhost/my-app";
 
 const db = mongoose.connect(DB_URL);
 
