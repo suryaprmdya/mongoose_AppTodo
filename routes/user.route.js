@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createUser } = require("../controllers/register.controller");
+// const { createUser } = require("../controllers/register.controller");
 const {
   createTodoUser,
   getAllTodoUser,
@@ -19,7 +19,7 @@ const route = express.Router();
 
 route.get("/", getAllUser);
 
-route.post("/register", createUser);
+// route.post("/register", createUser);
 
 route.get("/:username", verifyToken, getUserByUsername);
 route.post("/:username", verifyToken, createTodoUser);

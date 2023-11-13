@@ -49,23 +49,29 @@ module.exports = {
   getTodoById: async (req, res) => {
     const { id } = req.params;
 
-    const todo = await Todo.find({ _id: id });
+    try{
+      const todo = await Todo.find({ _id: id });
+      if (todo.length == 0) throw new Error("Tidak dapat menemukan todo dengan id tersebut")
+  
+      res.json({
+        message: "Todo berhasil didapat",
+        data: todo,
+      });
+    } catch (error){
+      res.json(error.message)
+    }
 
-    res.json({
-      message: "Todo berhasil didapat",
-      data: todo,
-    });
   },
 
   updateTodoById: async (req, res) => {
     const { id } = req.params;
     let newTodo = req.body;
 
-    const todo = await Todo.findOneAndUpdate({ _id: id }, newTodo);
+    await Todo.findOneAndUpdate({ _id: id }, newTodo);
 
     res.json({
       message: "Todo berhasil diperbarui",
-      data: todo,
+      data: newTodo,
     });
   },
 
